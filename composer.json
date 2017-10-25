@@ -1,0 +1,16 @@
+{
+    "name": "vendor/championship",
+    "description": "Football championship emulator",
+    "authors": [
+        {
+            "name": "Maxim Shablinski",
+            "email": "m.shablinski@ya.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Classes\\": "classes/"
+        }
+    }
+}
