@@ -6,7 +6,7 @@ namespace Classes;
 /**
  * Класс для генерации турнира
 */
-class MakeTournament
+class Tournament
 {
     /**
      * Участники турнирной стадии
@@ -45,7 +45,7 @@ class MakeTournament
      * @var array $couple
      * @return array
      */
-    public function playStage($teams)
+    public function playStages($teams)
     {
         shuffle($teams);
         $this->teams = array_chunk($teams, 2);
@@ -53,11 +53,10 @@ class MakeTournament
         foreach ($this->teams as $itemCouple) {
             $winners[] = $this->playGame($itemCouple);
         }
-        $a = [];
         $this->teams = $winners;
         $this->results[] = $winners;
         if(count($this->teams)>1) {
-            $this->playStage($this->teams);
+            $this->playStages($this->teams);
         }
         return $this->results;
     }

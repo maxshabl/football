@@ -1,10 +1,10 @@
 <?php
-
 require_once 'vendor/autoload.php';
-
-$a = new Classes\Test;
-$power = new Classes\Power;
-$powerget = $power->getTeamsPower();
-$turn = new Classes\MakeTournament();
-$turn->playStage($powerget);
-$a = [];
+switch ($_GET['actions']) {
+    case 'tournament' :
+        $teamsPower = (new Classes\Teams())->getTeamsPower();
+        echo json_encode((new Classes\Tournament())->playStages($teamsPower));
+        break;
+    default:
+        include_once (__DIR__.DIRECTORY_SEPARATOR.'source'.DIRECTORY_SEPARATOR.'main.html') ;
+}

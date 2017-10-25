@@ -2,25 +2,25 @@
 
 namespace Classes;
 
-class Power
+
+class Teams
 {
+
+    /**
+     * Статистика команд с рассчитаной силой атаки
+     * @var DB $db
+     */
     public $statistics;
 
+
+    /**
+     * Получаем статистику команд из базы
+     * @var DB $db
+     */
     public function __construct()
     {
-        $dsn = 'mysql:dbname=bd_football;host=127.0.0.1';
-        $user = 'root';
-        $password = '';
-        try {
-            $dbh = new \PDO($dsn, $user, $password);
-            $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
-        } catch (\PDOException $e) {
-            echo 'Подключение не удалось: ' . $e->getMessage();
-        }
-        $sql = 'SELECT * FROM statistics';
-        $res = $dbh->prepare($sql);
-        $res->execute();
-        $this->statistics = $res->fetchAll(\PDO::FETCH_ASSOC);
+
+        $this->statistics =  DB::getConnection()->getTeamsStatistics();
 
     }
 
