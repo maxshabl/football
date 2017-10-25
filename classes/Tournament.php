@@ -51,7 +51,10 @@ class Tournament
         $this->teams = array_chunk($teams, 2);
         $winners = [];
         foreach ($this->teams as $itemCouple) {
-            $winners[] = $this->playGame($itemCouple);
+            $winners[] = [
+                'couple' => $itemCouple,
+                'winner' => $this->playGame($itemCouple)
+            ];
         }
         $this->teams = $winners;
         $this->results[] = $winners;
